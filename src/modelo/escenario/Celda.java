@@ -17,7 +17,7 @@ public class Celda {
     //CONSTRUCTOR, CAPACIDAD CONSTANTE
     public Celda(Posicion posicion) {
         this.posicion = posicion;
-        capacidad=5;
+        capacidad=5; 
     }
     
     //GETTER posición
