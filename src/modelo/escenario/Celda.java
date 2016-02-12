@@ -9,7 +9,7 @@ public class Celda {
     private LinkedList<Celda> celdas;
     private LinkedList<Entidad> entidades;
 
-    //CONSTRUCTOR 
+    //CONSTRUCTOR ja
     public Celda(Posicion posicion, int capacidad) {
         this.posicion = posicion;
         this.capacidad = capacidad;
