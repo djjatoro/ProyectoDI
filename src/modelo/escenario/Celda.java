@@ -21,7 +21,7 @@ public class Celda {
     }
     
     //GETTER posición
-    public Posicion getPosicion() {
+    public Posicion getPosicion() { 
         return posicion;
     }
     
