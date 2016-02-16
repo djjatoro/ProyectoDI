@@ -86,14 +86,31 @@ public class Celda {
     }
     
     public void arrastrar(Orientacion o, int desplazamiento){
-        
+        this.posicion.desplaza(desplazamiento, o);
+        for(Celda c : celdas)
+            c.empujar(this, o, desplazamiento);
     }
     
     public void empujar(Celda c, Orientacion o, int desplazamiento){
-        
+        this.posicion.desplaza(desplazamiento, o);
+        for (Celda ce: celdas)
+            if (c!=this)
+                ce.empujar(this, o, desplazamiento);
     }
     
-    public void colocar (){
-        
+    public void colocar (int x, int y){
+        if (x-this.getPosicion().getCoordX()>0)
+            this.arrastrar(Orientacion.DERECHA, x-this.getPosicion().getCoordX());
+        else
+            this.arrastrar(Orientacion.IZQUIERDA, this.getPosicion().getCoordX()-x);
+        if (y-this.getPosicion().getCoordY()>0)
+            this.arrastrar(Orientacion.ARRIBA, y-this.getPosicion().getCoordX());
+        else
+            this.arrastrar(Orientacion.ABAJO, this.getPosicion().getCoordX()-y);
+    }
+    
+    public void expandirFuego(){
+        for (Celda c : celdas)
+            c.arder();
     }
 }
