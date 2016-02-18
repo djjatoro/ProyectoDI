@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Celda {
     private Posicion posicion;
     private int capacidad;
-    private final int CAPACMAX=5;
+    private static final int CAPACMAX=5;
     private boolean ardiendo=false;
     private LinkedList<Celda> celdas;
     private LinkedList<Entidad> entidades;
@@ -21,8 +21,7 @@ public class Celda {
     
     //CONSTRUCTOR, CAPACIDAD CONSTANTE
     public Celda(Posicion posicion) {
-        this.posicion = posicion;
-        this.capacidad=CAPACMAX;
+        this(posicion, CAPACMAX);
     }
     
     //GETTER posición
@@ -98,15 +97,15 @@ public class Celda {
                 ce.empujar(this, o, desplazamiento);
     }
     
-    public void colocar (int x, int y){
-        if (x-this.getPosicion().getCoordX()>0)
-            this.arrastrar(Orientacion.DERECHA, x-this.getPosicion().getCoordX());
+    public void colocar (Posicion p){
+        if (p.getCoordX()-this.getPosicion().getCoordX()>0)
+            this.arrastrar(Orientacion.DERECHA, p.getCoordX()-this.getPosicion().getCoordX());
         else
-            this.arrastrar(Orientacion.IZQUIERDA, this.getPosicion().getCoordX()-x);
-        if (y-this.getPosicion().getCoordY()>0)
-            this.arrastrar(Orientacion.ARRIBA, y-this.getPosicion().getCoordX());
+            this.arrastrar(Orientacion.IZQUIERDA, this.getPosicion().getCoordX()-p.getCoordX());
+        if (p.getCoordY()-this.getPosicion().getCoordY()>0)
+            this.arrastrar(Orientacion.ARRIBA, p.getCoordY()-this.getPosicion().getCoordX());
         else
-            this.arrastrar(Orientacion.ABAJO, this.getPosicion().getCoordX()-y);
+            this.arrastrar(Orientacion.ABAJO, this.getPosicion().getCoordX()-p.getCoordY());
     }
     
     public void expandirFuego(){

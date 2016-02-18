@@ -58,9 +58,17 @@ public class Posicion {
             case DERECHA:
                 return (y==coordY && x-coordX==1);
             case IZQUIERDA:
-                return (y==coordY && x-coordX==1);
+                return (y==coordY && x-coordX==-1);
         }
-    return false;
+        return false;
+    }
+    
+    public Orientacion adyacencia(Posicion pos){
+        if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.ARRIBA))return Orientacion.ARRIBA;
+        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.ABAJO))return Orientacion.ABAJO;
+        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.DERECHA))return Orientacion.DERECHA;
+        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.IZQUIERDA))return Orientacion.IZQUIERDA;
+        return null;
     }
     
     public Posicion origen (){
