@@ -2,6 +2,9 @@
 package modelo.escenario;
 
 public class Posicion {
+    
+    private static final Posicion origen = new Posicion(0,0);
+    
     private final int coordX;
     private final int coordY;
     
@@ -15,7 +18,7 @@ public class Posicion {
         this.coordY=coordY;
     }
     
-    public Posicion ( Posicion p){
+    public Posicion (Posicion p){
         this.coordX=p.getCoordX();
         this.coordY=p.getCoordY();
     }
@@ -72,11 +75,24 @@ public class Posicion {
     }
     
     public Posicion origen (){
-        Posicion o = new Posicion();
-        return o;
+        return origen;
     }
     
     public Double distancia(int x, int y){
         return Math.sqrt(Math.pow((x-coordX),2)+Math.pow((y-coordY),2));
     }
+    
+    // este va en posicion
+    public Posicion clone(){
+
+		Object obj = null;
+		
+		try {
+			obj = super.clone();
+		} catch (CloneNotSupportedException e){
+			assert false: "El objeto no puede ser clonado";
+		}
+		
+		return (Posicion) obj;
+	}
 }

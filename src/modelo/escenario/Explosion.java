@@ -7,4 +7,11 @@ public class Explosion extends Celda {
         super(p, capacidad);
         this.arder();
     }
+
+    @Override
+    public void apagar() {
+        
+    }
+    
+    
 }

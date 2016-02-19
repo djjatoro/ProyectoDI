@@ -17,4 +17,23 @@ public enum Orientacion {
         }
         return null;
     }
+
+
+public Orientacion getOrientacionL(boolean esL){
+    switch (this){
+        case ABAJO:
+            if (esL) return Orientacion.IZQUIERDA;
+            else return Orientacion.DERECHA;
+        case ARRIBA:
+            if (esL) return Orientacion.DERECHA;
+            else return Orientacion.IZQUIERDA;            
+        case IZQUIERDA:
+            if (esL) return Orientacion.ARRIBA;
+            else return Orientacion.ABAJO;
+        case DERECHA:
+            if (esL) return Orientacion.ABAJO;
+            else return Orientacion.ARRIBA;                        
+    }
+    return null;
+}
 }

@@ -46,9 +46,7 @@ public class Celda {
     }
     
     public boolean isLlena(){
-        if (capacidad==entidades.size())
-            return false;
-        return true;
+        return (capacidad==entidades.size());
     }
     
     public boolean addEntidad(Entidad e){
@@ -77,23 +75,25 @@ public class Celda {
     
     public boolean conecta(Orientacion o, Celda c){
         if (posicion.adyacente(c.getPosicion().getCoordX(), c.getPosicion().getCoordY(), o)){
-            celdas.add(c);
-            c.getCeldasVecinas().add(this);
+            if (!celdas.contains(c))
+                celdas.add(c);
+            if (!c.getCeldasVecinas().contains(this))
+                    c.getCeldasVecinas().add(this);
             return true;
         } else
             return false;
     }
     
     public void arrastrar(Orientacion o, int desplazamiento){
-        this.posicion.desplaza(desplazamiento, o);
+        this.posicion=posicion.desplaza(desplazamiento, o);
         for(Celda c : celdas)
             c.empujar(this, o, desplazamiento);
     }
     
     public void empujar(Celda c, Orientacion o, int desplazamiento){
-        this.posicion.desplaza(desplazamiento, o);
+        this.posicion=posicion.desplaza(desplazamiento, o);
         for (Celda ce: celdas)
-            if (c!=this)
+            if (ce!=c)
                 ce.empujar(this, o, desplazamiento);
     }
     
@@ -112,4 +112,21 @@ public class Celda {
         for (Celda c : celdas)
             c.arder();
     }
+    
+    public Celda clone(){
+		
+        Object obj = null;
+
+        try {
+                obj = super.clone();
+        } catch (CloneNotSupportedException e){
+                assert false: "El objeto no puede ser clonado";
+        }
+        Celda celda = (Celda) obj;
+        celda.posicion = posicion.clone();
+        celda.celdas = new LinkedList<Celda>();
+        celda.entidades = new LinkedList<Entidad>();
+        return celda;
+    }
+
 }

@@ -84,25 +84,27 @@ public class CeldaTest {
     public void testArrastrar() {
         System.out.println("arrastrar");
         Posicion p = celda1.getPosicion();
+        Posicion pA=cArriba.getPosicion();
         celda1.arrastrar(Orientacion.ABAJO, 2);
         assertEquals(celda1.getPosicion().getCoordY(), p.getCoordY()-2);
+        assertEquals(cArriba.getPosicion().getCoordY(),pA.getCoordY()-2);
+        assertEquals(cAbajo.getPosicion().getCoordY(),0);
+  
         // TODO review the generated test code and remove the default call to fail.
     }    
     
-//    /**
-//     * Test of empujar method, of class Celda.
-//     */
-//    @Test
-//    public void testEmpujar() {
-//        System.out.println("empujar");
-//        Celda c = null;
-//        Orientacion o = null;
-//        int desplazamiento = 0;
-//        Celda instance = null;
-//        instance.empujar(c, o, desplazamiento);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of empujar method, of class Celda.
+     */
+    @Test
+    public void testEmpujar() {
+        System.out.println("empujar");
+        Posicion p=celda1.getPosicion();
+        celda1.empujar(celda1, Orientacion.ABAJO, 2);
+        assertEquals(celda1.getPosicion().getCoordY(), p.getCoordY()-2);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of colocar method, of class Celda.
