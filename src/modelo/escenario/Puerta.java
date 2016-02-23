@@ -23,7 +23,10 @@ public class Puerta extends Celda {
         if (abierta)
             super.expandirFuego(); //To change body of generated methods, choose Tools | Templates.
     }
- 
+
+    public boolean conmutar(){
+        return !abierta;
+    }
     
     
 }

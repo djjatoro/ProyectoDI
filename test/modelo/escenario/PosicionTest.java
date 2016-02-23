@@ -47,8 +47,8 @@ public class PosicionTest {
         int x=1;
         int y=1;
         Posicion p = new Posicion(x, y);
-        assertEquals(x, p.getCoordX());
-        assertEquals(y, p.getCoordY());
+        assertEquals(x, p.getX());
+        assertEquals(y, p.getY());
         // TODO review the generated test code and remove the default call to fail.
     }    
 

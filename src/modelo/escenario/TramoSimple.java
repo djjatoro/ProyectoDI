@@ -43,7 +43,7 @@ public class TramoSimple extends Tramo {
 	 * @return celdaNegativa, atributo con la celda negativa del tramo.
 	 */
 	public Celda getCeldaNegativa(){
-		return null;
+            return celdaTramo;
 	}
 	
 	
@@ -52,7 +52,7 @@ public class TramoSimple extends Tramo {
 	 * @return celdaPositiva, atributo con la celda positiva del tramo.
 	 */
 	public Celda getCeldaPositiva(){
-		return null;
+            return celdaTramo;
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class TramoSimple extends Tramo {
 	 */
 	public LinkedList<Celda> getCeldasTramo() {
 		
-		return null;
+            return celdaTramo.getCeldasVecinas();
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class TramoSimple extends Tramo {
 	 * @return entero con el número de celdas que conforman el tramo.
 	 */
 	public int getLongitud(){
-		return 0;
+            return 1;
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class TramoSimple extends Tramo {
 	 * @return orientacion positiva.
 	 */
 	public Orientacion getOrientacionPositiva() {
-		return null;
+            return this.getOrientacionNegativa().opuesta();
 	}
 
 	/**

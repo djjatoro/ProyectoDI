@@ -5,35 +5,35 @@ public class Posicion {
     
     private static final Posicion origen = new Posicion(0,0);
     
-    private final int coordX;
-    private final int coordY;
+    private final int x;
+    private final int y;
     
     public Posicion (){
-        coordX=0;
-        coordY=0;
+        x=0;
+        y=0;
     }
     
     public Posicion (int coordX, int coordY){
-        this.coordX=coordX;
-        this.coordY=coordY;
+        this.x=coordX;
+        this.y=coordY;
     }
     
     public Posicion (Posicion p){
-        this.coordX=p.getCoordX();
-        this.coordY=p.getCoordY();
+        this.x=p.getX();
+        this.y=p.getY();
     }
 
-    public int getCoordX() {
-        return coordX;
+    public int getX() {
+        return x;
     }
 
-    public int getCoordY() {
-        return coordY;
+    public int getY() {
+        return y;
     }
     
     public Posicion desplaza(int desplazamiento, Orientacion o) {
-        int x=coordX;
-        int y=coordY;
+        int x=this.x;
+        int y=this.y;
         switch (o){
             case DERECHA:
                 x=x+desplazamiento;
@@ -51,26 +51,47 @@ public class Posicion {
         Posicion p = new Posicion (x,y);
         return p;
     }
+    
+    public Posicion desplaza(Orientacion o) {
+        int x=this.x;
+        int y=this.y;
+        switch (o){
+            case DERECHA:
+                x=x+1;
+                break;
+            case IZQUIERDA:
+                x=x-1;
+                break;
+            case ARRIBA:
+                y=y+1;
+                break;
+            case ABAJO:
+                y=y-1;                
+                break;
+        }
+        Posicion p = new Posicion (x,y);
+        return p;
+    }
 
     public Boolean adyacente(int x, int y, Orientacion o) {
         switch (o){
             case ARRIBA:
-                return (x==coordX && y-coordY==1);
+                return (x==this.x && y-this.y==1);
             case ABAJO:    
-                return (x==coordX && y-coordY==-1);
+                return (x==this.x && y-this.y==-1);
             case DERECHA:
-                return (y==coordY && x-coordX==1);
+                return (y==this.y && x-this.x==1);
             case IZQUIERDA:
-                return (y==coordY && x-coordX==-1);
+                return (y==this.y && x-this.x==-1);
         }
         return false;
     }
     
     public Orientacion adyacencia(Posicion pos){
-        if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.ARRIBA))return Orientacion.ARRIBA;
-        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.ABAJO))return Orientacion.ABAJO;
-        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.DERECHA))return Orientacion.DERECHA;
-        else if(this.adyacente(pos.getCoordX(),pos.getCoordY(),Orientacion.IZQUIERDA))return Orientacion.IZQUIERDA;
+        if(this.adyacente(pos.getX(),pos.getY(),Orientacion.ARRIBA))return Orientacion.ARRIBA;
+        else if(this.adyacente(pos.getX(),pos.getY(),Orientacion.ABAJO))return Orientacion.ABAJO;
+        else if(this.adyacente(pos.getX(),pos.getY(),Orientacion.DERECHA))return Orientacion.DERECHA;
+        else if(this.adyacente(pos.getX(),pos.getY(),Orientacion.IZQUIERDA))return Orientacion.IZQUIERDA;
         return null;
     }
     
@@ -78,8 +99,8 @@ public class Posicion {
         return origen;
     }
     
-    public Double distancia(int x, int y){
-        return Math.sqrt(Math.pow((x-coordX),2)+Math.pow((y-coordY),2));
+    public Double distancia(Posicion p){
+        return Math.sqrt(Math.pow((p.getX()-x),2)+Math.pow((p.getY()-y),2));
     }
     
     // este va en posicion

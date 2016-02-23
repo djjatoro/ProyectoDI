@@ -48,7 +48,7 @@ public class Codo extends Tramo {
 	 * @return celdaNegativa, será la primera celda de las que componen el codo.
 	 */
 	public Celda getCeldaNegativa(){
-		return null;
+		return this.getCeldasTramo().getFirst();
 	}
 	
 	
@@ -58,7 +58,7 @@ public class Codo extends Tramo {
 	 * Su valor será siempre 4, la longitud fija de un codo.
 	 */
 	public int getLongitud(){
-		return 0;
+            return this.getCeldasTramo().size();
 	}
 	
 	
@@ -67,7 +67,7 @@ public class Codo extends Tramo {
 	 * @return celdaPositiva, última celda de las que componen el codo.
 	 */
 	public Celda getCeldaPositiva(){
-		return null;
+		return this.getCeldasTramo().getLast();
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class Codo extends Tramo {
 	 * @return celdasTramo, lista (linkedList) de celdas contenidas en el codo.
 	 */
 	public LinkedList<Celda> getCeldasTramo() {
-		return null;	
+		return celdasTramo;	
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class Codo extends Tramo {
 	 * @return orientacion positiva.
 	 */
 	protected Orientacion getOrientacionPositiva() {
-		return null;
+		return this.getOrientacionNegativa().opuesta();
 	}
 
 	/**
@@ -142,7 +142,12 @@ public class Codo extends Tramo {
 	 * posición de la celda negativa.
 	 */
 	private void construirCodo(Codo codo, Posicion pos, Orientacion orientacion){
-		
-		;
+            for (int i=0; i<3; i++){
+                Celda c = new Celda(pos.desplaza(i, orientacion));
+                celdasTramo.add(c);
+                c.conecta(celdasTramo.get(i-1), orientacion);
+            } 
+            Celda c = new Celda(celdasTramo.getLast().getPosicion().desplaza(orientacion.getOrientacionL(esL)));
+            celdasTramo.add(c);
 	}
 }

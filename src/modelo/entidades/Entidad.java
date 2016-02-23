@@ -3,7 +3,6 @@ package modelo.entidades;
 import modelo.escenario.Orientacion;
 import modelo.escenario.Celda;
 import modelo.escenario.Posicion;
-import tuberias.vista.*;
 
 /**
  * <p><b>Ttulo:</b> Clase entidad
@@ -11,7 +10,7 @@ import tuberias.vista.*;
  * @author Miguel Ángel Marín Fernández
  * @version 1.0
  */
-public abstract class Entidad implements Dibujable {
+public abstract class Entidad {
 
 	// ATRIBUTOS
 	

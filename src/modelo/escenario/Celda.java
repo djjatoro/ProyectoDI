@@ -2,6 +2,7 @@
 package modelo.escenario;
 
 import java.util.LinkedList;
+import modelo.entidades.Entidad;
 
 public class Celda {
     private Posicion posicion;
@@ -32,13 +33,17 @@ public class Celda {
     //GETER celda vecina
     public Celda getCeldaVecina(Orientacion o){
         for (Celda c : celdas)
-            if (posicion.adyacente(c.getPosicion().getCoordX(), c.getPosicion().getCoordY(), o))
+            if (posicion.adyacente(c.getPosicion().getX(), c.getPosicion().getY(), o))
                 return c;
         return null;        
     }
     
     public LinkedList<Celda> getCeldasVecinas(){
         return celdas;
+    }
+
+    public LinkedList<Entidad> getEntidades() {
+        return entidades;
     }
     
     public int getCapacidadLibre(){
@@ -73,8 +78,8 @@ public class Celda {
         return ardiendo;
     }
     
-    public boolean conecta(Orientacion o, Celda c){
-        if (posicion.adyacente(c.getPosicion().getCoordX(), c.getPosicion().getCoordY(), o)){
+    public boolean conecta(Celda c, Orientacion o){
+        if (posicion.adyacente(c.getPosicion().getX(), c.getPosicion().getY(), o)){
             if (!celdas.contains(c))
                 celdas.add(c);
             if (!c.getCeldasVecinas().contains(this))
@@ -98,14 +103,14 @@ public class Celda {
     }
     
     public void colocar (Posicion p){
-        if (p.getCoordX()-this.getPosicion().getCoordX()>0)
-            this.arrastrar(Orientacion.DERECHA, p.getCoordX()-this.getPosicion().getCoordX());
+        if (p.getX()-this.getPosicion().getX()>0)
+            this.arrastrar(Orientacion.DERECHA, p.getX()-this.getPosicion().getX());
         else
-            this.arrastrar(Orientacion.IZQUIERDA, this.getPosicion().getCoordX()-p.getCoordX());
-        if (p.getCoordY()-this.getPosicion().getCoordY()>0)
-            this.arrastrar(Orientacion.ARRIBA, p.getCoordY()-this.getPosicion().getCoordX());
+            this.arrastrar(Orientacion.IZQUIERDA, this.getPosicion().getX()-p.getX());
+        if (p.getY()-this.getPosicion().getY()>0)
+            this.arrastrar(Orientacion.ARRIBA, p.getY()-this.getPosicion().getX());
         else
-            this.arrastrar(Orientacion.ABAJO, this.getPosicion().getCoordX()-p.getCoordY());
+            this.arrastrar(Orientacion.ABAJO, this.getPosicion().getX()-p.getY());
     }
     
     public void expandirFuego(){

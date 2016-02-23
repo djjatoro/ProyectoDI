@@ -51,7 +51,7 @@ public abstract class Enemigo extends Viva {
 			double maxDistancia = 99999;
 			Entidad entidadElegida = null;
 			for(Entidad entidad: comidas){
-				distancia =	this.getPosicion().distancia(entidad.getPosicion());
+				distancia = this.getPosicion().distancia(entidad.getPosicion());
 				if (distancia < maxDistancia) {
 					entidadElegida = entidad;
 					maxDistancia = distancia;

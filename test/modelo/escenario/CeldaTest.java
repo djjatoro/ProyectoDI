@@ -5,7 +5,6 @@
  */
 package modelo.escenario;
 
-import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +48,11 @@ public class CeldaTest {
         cArriba = new Celda(pArriba);
         cAbajo = new Celda(pAbajo);
         cDerecha = new Celda(pDerecha);
-        cIzquierda = new Celda(pIzquierda);        
+        cIzquierda = new Celda(pIzquierda);
+        celda1.conecta(cArriba, Orientacion.ARRIBA);
+        celda1.conecta(cAbajo, Orientacion.ABAJO);
+        celda1.conecta(cDerecha, Orientacion.DERECHA);
+        celda1.conecta(cIzquierda, Orientacion.IZQUIERDA);
     }
     
     @After
@@ -62,10 +65,6 @@ public class CeldaTest {
     @Test
     public void testConecta() {
         System.out.println("conecta");
-        celda1.conecta(Orientacion.ARRIBA, cArriba);
-        celda1.conecta(Orientacion.ABAJO, cAbajo);
-        celda1.conecta(Orientacion.DERECHA, cDerecha);
-        celda1.conecta(Orientacion.IZQUIERDA, cIzquierda);
         assertTrue(celda1.getCeldasVecinas().contains(cArriba));
         assertTrue(celda1.getCeldasVecinas().contains(cAbajo));
         assertTrue(celda1.getCeldasVecinas().contains(cDerecha));
@@ -86,9 +85,9 @@ public class CeldaTest {
         Posicion p = celda1.getPosicion();
         Posicion pA=cArriba.getPosicion();
         celda1.arrastrar(Orientacion.ABAJO, 2);
-        assertEquals(celda1.getPosicion().getCoordY(), p.getCoordY()-2);
-        assertEquals(cArriba.getPosicion().getCoordY(),pA.getCoordY()-2);
-        assertEquals(cAbajo.getPosicion().getCoordY(),0);
+        assertEquals(celda1.getPosicion().getY(), p.getY()-2);
+        assertEquals(cArriba.getPosicion().getY(),pA.getY()-2);
+        assertEquals(cAbajo.getPosicion().getY(),0);
   
         // TODO review the generated test code and remove the default call to fail.
     }    
@@ -101,24 +100,22 @@ public class CeldaTest {
         System.out.println("empujar");
         Posicion p=celda1.getPosicion();
         celda1.empujar(celda1, Orientacion.ABAJO, 2);
-        assertEquals(celda1.getPosicion().getCoordY(), p.getCoordY()-2);
+        assertEquals(celda1.getPosicion().getY(), p.getY()-2);
         // TODO review the generated test code and remove the default call to fail.
         
     }
-//
-//    /**
-//     * Test of colocar method, of class Celda.
-//     */
-//    @Test
-//    public void testColocar() {
-//        System.out.println("colocar");
-//        int x = 0;
-//        int y = 0;
-//        Celda instance = null;
-//        instance.colocar(x, y);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }    
+
+    /**
+     * Test of colocar method, of class Celda.
+     */
+    @Test
+    public void testColocar() {
+        celda1.colocar(new Posicion(3, 4));
+        assertEquals(celda1.getPosicion().getX(),3);
+        assertEquals(celda1.getPosicion().getY(),4);
+        assertEquals(cArriba.getPosicion().getX(),3);
+        assertEquals(cArriba.getPosicion().getY(),5);
+    }    
 
 //    /**
 //     * Test of getPosicion method, of class Celda.

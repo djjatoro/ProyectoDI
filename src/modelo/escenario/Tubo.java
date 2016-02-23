@@ -42,7 +42,7 @@ public class Tubo extends Tramo {
 	 * @return celdaNegativa, primera celda del tubo.
 	 */
 	public Celda getCeldaNegativa(){
-		return null;
+		return celdasTramo.getFirst();
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Tubo extends Tramo {
 	 * @return orientacion positiva.
 	 */
 	public Orientacion getOrientacionPositiva() {
-		return null;
+		return this.getOrientacionNegativa().opuesta();
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class Tubo extends Tramo {
 	 * @return entero con el número de celdas que conforman el tubo.
 	 */
 	public int getLongitud(){
-		return 0;
+		return celdasTramo.size();
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Tubo extends Tramo {
 	 * @return celdaPositiva, última celda del tubo.
 	 */
 	public Celda getCeldaPositiva(){
-		return null;
+		return celdasTramo.getLast();
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class Tubo extends Tramo {
 	 * @return celdasTramo, lista (linkedList) de celdas contenidas en el tubo.
 	 */
 	public LinkedList<Celda> getCeldasTramo() {
-		return null;
+		return celdasTramo;
 	}
 	
 	/**
@@ -128,7 +128,11 @@ public class Tubo extends Tramo {
 	 * @param longitud, número de celdas a añadir.
 	 */
 	private void construirTubo(Tubo tubo, Posicion pos, Orientacion orientacion, int longitud){
-		;
+            for (int i=0; i<longitud; i++){
+                Celda c = new Celda(pos.desplaza(i, orientacion));
+                celdasTramo.add(c);
+                c.conecta(celdasTramo.get(i-1), orientacion);
+            }    
 		
 	}
 }

@@ -51,7 +51,7 @@ public class RedTuberias implements ActionListener {
 	 * @return Primera celda de la red, celda negativa de la primera tubería.
 	 */
 	public Celda celdaInicial(){
-		return null;
+		return listaTuberias.getFirst().getCeldasTramo().getFirst();
 	}
 	
 	/**
@@ -59,7 +59,11 @@ public class RedTuberias implements ActionListener {
 	 * @return Lista con las celdas de todas las tuberías.
 	 */
 	public LinkedList<Celda> getCeldas(){
-		return null;
+            LinkedList<Celda> listaC = new LinkedList<>();
+            for (Tuberia t: listaTuberias)
+                for (Tramo tr : t.getTramosTuberia())
+                    listaC.addAll(tr.getCeldasTramo());
+            return listaC;
 	}
 
 	/**
@@ -149,7 +153,7 @@ public class RedTuberias implements ActionListener {
                     listaTuberias.get(tuberia2-1).desplazar(listaTuberias.get(tuberia1-1).getCelda(celdaConexion).getPosicion().desplaza(orientacionConexion));
                     listaTuberias.get(tuberia2-1).girar(orientacionConexion.opuesta());
 
-                    return	listaTuberias.get(tuberia1-1).getCelda(celdaConexion).conecta(listaTuberias.get(tuberia2-1).getCeldaNegativa(), orientacionConexion);	
+                    return listaTuberias.get(tuberia1-1).getCelda(celdaConexion).conecta(listaTuberias.get(tuberia2-1).getCeldaNegativa(), orientacionConexion);	
                     }
 
             return false;
