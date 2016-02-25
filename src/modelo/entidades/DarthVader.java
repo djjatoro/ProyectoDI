@@ -1,5 +1,8 @@
 package modelo.entidades;
 
+import modelo.escenario.Celda;
+import modelo.escenario.Orientacion;
+import modelo.escenario.Puerta;
 import modelo.escenario.RedTuberias;
 
 /**
@@ -33,8 +36,12 @@ public class DarthVader extends Enemigo {
 	 * En caso de pasar por una puerta, la abrirá.
 	 */
 	public void actuar() {
-		;
-
+            Orientacion o = calcularRuta();
+            mover(o);
+            Celda c = getCelda().getCeldaVecina(o);
+            if (c instanceof Puerta){
+                ((Puerta)c).setAbierta(true);
+            }
 	}
 
 	/**

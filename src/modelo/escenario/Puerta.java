@@ -9,6 +9,10 @@ public class Puerta extends Celda {
         super(p, capacidad);
         this.abierta=true;
     }
+    
+    public Puerta (Posicion p){
+        super(p);
+    }
 
     public boolean isAbierta() {
         return abierta;

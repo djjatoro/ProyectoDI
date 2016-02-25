@@ -94,11 +94,11 @@ public class Posicion {
         else if(this.adyacente(pos.getX(),pos.getY(),Orientacion.IZQUIERDA))return Orientacion.IZQUIERDA;
         return null;
     }
-    
-    public Posicion origen (){
+
+    public static Posicion getOrigen() {
         return origen;
     }
-    
+       
     public Double distancia(Posicion p){
         return Math.sqrt(Math.pow((p.getX()-x),2)+Math.pow((p.getY()-y),2));
     }

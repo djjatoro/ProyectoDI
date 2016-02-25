@@ -74,7 +74,10 @@ public class RedTuberias implements ActionListener {
 	 * en la red con dicha posición.
 	 */
 	public Celda getCelda(Posicion posicion){
-		return null;
+            for (Celda c : getCeldas())
+                if (c.getPosicion()==posicion)
+                    return c;
+            return null;
 	}
 	
 	/**
@@ -85,7 +88,7 @@ public class RedTuberias implements ActionListener {
 	 * @return Celda con el índice especificado dentro de la tubería de índice "tubería".
 	 */
 	public Celda getCelda(int tuberia, int celda){
-		return null;
+            return listaTuberias.get(tuberia).getCelda(celda);
 	}
 	
 	/**
@@ -94,7 +97,7 @@ public class RedTuberias implements ActionListener {
 	 * @return entero, longitud (número de celdas) de la tubería de índice especificado.
 	 */
 	public int getLongitudTuberia(int tuberia){
-		return 0;
+		return listaTuberias.get(tuberia).getLongitud();
 	}
 	
 	/**
@@ -102,7 +105,7 @@ public class RedTuberias implements ActionListener {
 	 * @return entero, número de tuberías que componen la red.
 	 */
 	public int getNumeroTuberias(){
-		return 0;
+		return listaTuberias.size();
 	}
 	
 	/**
@@ -113,8 +116,8 @@ public class RedTuberias implements ActionListener {
 	 * @return entero, índice de la nueva tubería de la red.
 	 */
 	public int addTuberia(Tuberia tuberia){
-		return 0;
-		
+		listaTuberias.add(tuberia);
+                return listaTuberias.size()-1;
 	}
 	
 	/**
