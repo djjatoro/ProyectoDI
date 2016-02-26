@@ -1,5 +1,8 @@
 package modelo.entidades;
 
+import modelo.escenario.Celda;
+import modelo.escenario.Orientacion;
+import modelo.escenario.Puerta;
 import modelo.escenario.RedTuberias;
 
 /**
@@ -33,7 +36,13 @@ public class KyloRen extends Enemigo {
 	 * si existe una roca en la celda a desplazarse, en cuyo caso permanecerá inmovil.
 	 */
 	public void actuar() {
-            ;
+            Orientacion o = calcularRuta();
+            mover(o);
+            Celda c = getCelda().getCeldaVecina(o);
+            if (c instanceof Puerta){
+                Puerta puerta = (Puerta) this.getCelda();
+                puerta.setAbierta(true);
+            }
 	}
 
 	/**

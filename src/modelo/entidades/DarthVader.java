@@ -40,7 +40,8 @@ public class DarthVader extends Enemigo {
             mover(o);
             Celda c = getCelda().getCeldaVecina(o);
             if (c instanceof Puerta){
-                ((Puerta)c).setAbierta(true);
+                Puerta puerta = (Puerta) this.getCelda();
+                puerta.setAbierta(true);
             }
 	}
 

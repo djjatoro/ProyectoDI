@@ -143,11 +143,13 @@ public class Codo extends Tramo {
 	 */
 	private void construirCodo(Codo codo, Posicion pos, Orientacion orientacion){
             for (int i=0; i<3; i++){
-                Celda c = new Celda(pos.desplaza(i, orientacion));
-                celdasTramo.add(c);
-                c.conecta(celdasTramo.get(i-1), orientacion);
+                Celda c = new Celda(pos.desplaza(i, orientacion.opuesta()));
+                if (i>0)
+                    c.conecta(celdasTramo.get(i-1), orientacion);
+                codo.celdasTramo.add(c);
             } 
             Celda c = new Celda(celdasTramo.getLast().getPosicion().desplaza(orientacion.getOrientacionL(esL)));
-            celdasTramo.add(c);
+            c.conecta(codo.celdasTramo.getLast(), orientacion.opuesta().getOrientacionL(esL));
+            codo.celdasTramo.add(c);
 	}
 }

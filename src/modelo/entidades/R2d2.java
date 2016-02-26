@@ -2,6 +2,7 @@ package modelo.entidades;
 
 import modelo.escenario.Orientacion;
 import java.util.*;
+import modelo.escenario.Celda;
 
 
 /**
@@ -55,7 +56,7 @@ public class R2d2 extends Inerte implements Animada {
 	 * de una tubería, desaparecerá.
 	 */
 	public void actuar() {
-		;
+		LinkedList <Celda> candidatas = new LinkedList<>();
 	}
 
 	/**
