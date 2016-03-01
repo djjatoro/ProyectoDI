@@ -29,6 +29,7 @@ import java.util.*;
 import javax.swing.Timer;
 
 import controlador.configuracion.ConfiguracionIncorrecta;
+import vista.Pantalla;
 
 /**
  * <p><b>Título:</b> Clase Partida
@@ -64,7 +65,7 @@ public class Partida implements IControlador, ActionListener {
 	 *
 	 */
 	public Partida(){
-		
+            pantalla = new Pantalla(this);		
 	}
 	
 	// MÉTODOS
@@ -80,7 +81,7 @@ public class Partida implements IControlador, ActionListener {
 	 * lectura del fichero.
 	 */
 	public void abrir(String fichero){
-            
+
 	}
 	
 	/**
