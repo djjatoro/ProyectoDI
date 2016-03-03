@@ -42,7 +42,12 @@ public class Fuerza extends Inerte {
 	 * @param Viva, entidad sobre la que actuará el alimento.
 	 */
 	public void reaccionar(Viva viva){
-			;
+	    for (Entidad e : this.getCelda().getEntidades()) {
+                if (e instanceof Viva) {
+                    viva.setAireGastado(fuerza + viva.getAireGastado()); 
+                    e.desaparecer();
+                }
+            }
 	}
 	
 	/**

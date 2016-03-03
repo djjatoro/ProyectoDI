@@ -3,6 +3,7 @@ package modelo.entidades;
 import modelo.escenario.Orientacion;
 import java.util.*;
 import modelo.escenario.Celda;
+import modelo.escenario.Puerta;
 
 
 /**
@@ -40,7 +41,13 @@ public class R2d2 extends Inerte implements Animada {
 	 * que coincida con ella.
 	 */
 	public void reaccionar(Viva viva) {
-		;
+            for (Entidad e : this.getCelda().getEntidades()) {
+                if (e instanceof Inerte) {
+                    if (e != this) {
+                        viva.setAireGastado(0);
+                    }
+                }
+            }
 		/* Este método no debería ser necesario, pero puede darse el caso de que
 		 R2 obtenga el temporizador antes que la otra entidad y salga de la celda
 		 antes de que la entidad se de cuenta de que la ha drenado, por lo que esta no
@@ -56,7 +63,26 @@ public class R2d2 extends Inerte implements Animada {
 	 * de una tubería, desaparecerá.
 	 */
 	public void actuar() {
-		LinkedList <Celda> candidatas = new LinkedList<>();
+            Random r = new Random();
+            Celda c = getCelda().getCeldasVecinas().get(r.nextInt(3));
+            Orientacion o = c.getPosicion().adyacencia(c.getPosicion());
+            if (o != anterior) {
+                c.arder();
+                mover(o);
+                c = getCelda();
+                c.apagar();
+                for (Entidad e : this.getCelda().getEntidades()) {
+                    if (e instanceof R2d2) {
+                        e.desaparecer();
+                    }
+                    if(!c.isArdiendo()){
+                        e.desaparecer();
+                    }
+                    if(e.getCelda().getCeldaVecina(o)==null){
+                        e.desaparecer();
+                    }
+                }
+            }
 	}
 
 	/**

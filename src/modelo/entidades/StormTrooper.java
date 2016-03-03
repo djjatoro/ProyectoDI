@@ -2,6 +2,9 @@ package modelo.entidades;
 
 import modelo.escenario.RedTuberias;
 import java.util.*;
+import modelo.escenario.Celda;
+import modelo.escenario.Explosion;
+import modelo.escenario.Orientacion;
 
 
 /**
@@ -37,7 +40,23 @@ public class StormTrooper extends Enemigo {
 	 * ésta está apagada, y se moverá aleatoriamente a una celda adyacente, si está ardiendo.
 	 */
 	public void actuar() {
-		;
+	    Orientacion o = super.calcularRuta();
+            super.mover(o);
+            if (this.getCelda() instanceof Explosion) {
+                boolean ardiendo = ((Explosion) this.getCelda()).isArdiendo();
+                for (Entidad e : this.getCelda().getEntidades()) {
+                    if (e instanceof StormTrooper && e != this) {
+                        if (ardiendo) {
+                            Random r = new Random();
+                            Celda c = getCelda().getCeldasVecinas().get(r.nextInt(4));
+                            mover(c.getPosicion().adyacencia(c.getPosicion()));
+                        } else {
+                            super.mover(null);
+                        }
+                    }
+
+                }
+            }
 	}
 
 	/**

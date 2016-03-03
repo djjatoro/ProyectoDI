@@ -43,7 +43,11 @@ public class LadoOscuro extends Inerte {
 	 * @param Viva, entidad sobre la que actuará el lado oscuro.
 	 */
 	public void reaccionar(Viva viva){
-			;
+	    for (Entidad e : this.getCelda().getEntidades()) {
+                if (e instanceof LadoOscuro) {
+                    viva.setAireGastado(miedoIraOdio - viva.getAireGastado()); 
+                }
+            }
 	}
 	
 	/**
